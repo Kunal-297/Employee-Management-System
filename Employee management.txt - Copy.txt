@@ -1,0 +1,243 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+struct emp
+{
+    string name,id,adress,mobile_number;
+    int salary,age;
+};
+
+emp e[15];
+int total=0;
+
+
+void empdata(){
+     int choice = 0;
+     cout<<"How many employees do you want to enter ??"<<endl;
+     cin>>choice;
+     for(int i=total ; i<total+choice;i++){
+        cout<<"Enter data of employees "<<i+1<<endl;
+        cout<<"Employee Name: ";
+        cin>>e[i].name;
+        cout<<"age : ";
+        cin>>e[i].age;
+        if (e[i].age>23)
+        {
+            
+        }
+        else{
+            cout<<"Sorry, You are inapplicable for this job ."<<endl;
+            break;
+        }
+        cout<<"ID : ";
+        cin>>e[i].id;
+        cout<<"Adress : ";
+        cin>>e[i].adress;
+        start:
+        cout<<"Mobile Number : ";
+        cin>>e[i].mobile_number;
+        
+        if (e[i].mobile_number.length() == 10)
+        {
+            
+        }
+        else{
+            cout<<"The mobile number should be of 10 digit, Please try again"<<endl;
+            goto start;
+        }
+        
+       
+        
+        
+        cout<<"Salary : ";
+        cin>>e[i].salary;
+     }
+     total=total+choice;
+}
+void show(){
+    if(total!=0){
+        for (int i = 0; i < total; i++)
+        {
+            cout<<"Data of Employee "<<i+1<<endl;
+            cout<<"Employee Name : "<<e[i].name<<endl;
+            cout<<"ID: "<<e[i].id<<endl;
+            cout<<"Adress : "<<e[i].adress<<endl;
+            cout<<"Mobile Number :"<<e[i].mobile_number<<endl;
+            cout<<"Age :"<<e[i].age<<endl;            
+            cout<<"Salary : "<<e[i].salary<<endl;
+            
+        }
+        
+     
+    }
+    else{
+        cout<<"Your record is empty "<<endl;
+
+    }
+
+}
+void search(){
+    if(total!=0){
+        string id;
+        cout<<"Enter ID of data which you want to search ";
+        cin>>id;
+        for (int i = 0; i < total; i++)
+        {
+            if(id==e[i].id){
+            cout<<"Data of Employee "<<i+1<<endl;
+            cout<<"Employee Name : "<<e[i].name<<endl;
+            cout<<"ID: "<<e[i].id<<endl;
+            cout<<"Age :"<<e[i].age<<endl;
+            cout<<"Mobile Number :"<<e[i].mobile_number<<endl;
+            cout<<"Adress : "<<e[i].adress<<endl;
+            cout<<"Salary : "<<e[i].salary<<endl;
+            
+            break;
+
+            }
+            if(i==total-1){
+                cout<<"No such record exist"<<endl;
+            }
+        }
+        
+
+
+    }
+    else{
+        cout<<"Your record is empty "<<endl;
+
+    }
+
+}
+void update(){
+    if (total!=0)
+    {
+        string id;
+        cout<<"Enter id of data which you want to update :  ";
+        cin>>id;
+        for (int i = 0; i < total; i++)
+        {
+            if(id==e[i].id){
+            cout<<"Previous Data"<<endl;
+            cout<<"Data of Employee "<<i+1<<endl;
+            cout<<"Employee Name : "<<e[i].name<<endl;
+            cout<<"ID: "<<e[i].id<<endl;
+            cout<<"Age :"<<e[i].age<<endl;
+            cout<<"Mobile Number :"<<e[i].mobile_number<<endl;            
+            cout<<"Adress : "<<e[i].adress<<endl;
+            cout<<"Salary : "<<e[i].salary<<endl;
+            
+            cout<<"\nnew data "<<endl;
+            cout<<"Employee Name: ";
+            cin>>e[i].name;
+            cout<<"ID : ";
+            cin>>e[i].id;
+            cout<<"Adress :";
+            cin>>e[i].adress;
+            
+            cout<<"Salary : ";
+            cin>>e[i].salary;
+
+            break;
+
+            }
+            if(i==total-1){
+                cout<<"No such record exist"<<endl;
+            }
+        }
+
+    }
+    
+
+}
+void del(){
+    if(total!=0){
+        char user;
+        cout<<"Press 1 to delete full record"<<endl;
+        cout<<"Press 2 to delete specific record"<<endl;
+        cin>>user;
+        if (user =='1')
+        {
+            total =0;
+            cout<<"All record is deleted ";
+
+        }
+        else if(user =='2'){
+            string id;
+        cout<<"Enter id of data which you want to delete :  ";
+        cin>>id;
+        for (int i = 0; i < total; i++)
+        {
+            if(id ==e[i].id){
+                for(int j=i;j<total;j++)
+            {
+            e[j].name=e[j+1].name;
+            e[j].adress=e[j+1].adress;
+            e[j].id=e[j+1].id;
+            
+            e[j].salary=e[j+1].salary;
+            total--;
+            break;
+            }
+        }
+        if(i==total-1){
+            cout<<"No such record exist "<<endl;
+        }
+        }
+        
+
+        
+        
+
+        }        
+        
+    }
+
+}
+
+
+int main()
+{
+    char user;
+    while (1)
+    {
+        
+        cout<<"\n\nPress 1 to enter data : "<<endl;
+        cout<<"Press 2 to show data : "<<endl;
+        cout<<"Press 3 to search data : "<<endl;
+        cout<<"Press 4 to update data : "<<endl;
+        cout<<"Press 5 to del data : "<<endl;
+        cout<<"Press 6 to exit  : "<<endl;
+        cin>>user;
+        switch(user)
+        {
+            case '1':
+                 empdata();
+                 break;
+            case '2':
+                show();
+                break;
+            case '3':
+                search();
+                break;
+            case '4':
+                update();
+                break;
+            case '5':
+                del();
+                break;
+            
+            case '6':
+                exit(0);
+                break;
+            
+            default:
+                cout<<"Invalid Input"<<endl;
+                break;
+
+
+        }
+        
+    }
+    return 0;
+}
